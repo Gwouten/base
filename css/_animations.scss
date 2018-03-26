@@ -1,0 +1,23 @@
+@keyframes dropFromTop {
+  0%   {filter: blur(10px)}
+  30%  {opacity: 0;}
+  100% {opacity: 1; transform: translateY(0px); filter: blur(0px)}
+}
+@keyframes underline {
+  0%   {transform: translateX(-50%) scaleX(0);}
+  100% {transform: translateX(-50%) scaleX(1);}
+}
+@keyframes fadeIn {
+  0%   {opacity: 0}
+  100% {opacity: 1}
+}
+@keyframes moveOut {
+  0%   {transform: scale(1) translateX(0);opacity: 1}
+  25%  {transform: scale(.8) translateX(0);opacity: 1}
+  100% {transform: scale(.8) translateX(-200%);opacity: 1}
+}
+@keyframes moveIn {
+  0%   {transform: scale(.8) translateX(200%);opacity: 1}
+  75%  {transform: scale(.8);opacity: 1}
+  100% {transform: scale(1) translateX(0);opacity: 1}
+}
