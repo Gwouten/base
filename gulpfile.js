@@ -10,7 +10,7 @@ const uglify = require("gulp-uglify");
 
 gulp.task("sass", function() {
   return gulp
-    .src("css/**/*.scss")
+    .src("scss/**/*.scss")
     .pipe(sass())
     .pipe(autoprefix())
     .pipe(cleanCSS())
@@ -23,7 +23,7 @@ gulp.task("sass", function() {
 });
 
 gulp.task("watch", ["browserSync", "sass"], function() {
-  gulp.watch("css/**/*.scss", ["sass"]);
+  gulp.watch("scss/**/*.scss", ["sass"]);
   gulp.watch("*.html", reload);
   gulp.watch("*.php", reload);
   gulp.watch("js/*.js", reload);
@@ -31,10 +31,9 @@ gulp.task("watch", ["browserSync", "sass"], function() {
 
 gulp.task("browserSync", function() {
   browserSync.init({
-    proxy: "127.0.0.1:8010",
-    port: 8080,
-    open: true,
-    notify: false
+    server: {
+      baseDir: "./"
+    }
   });
 });
 
