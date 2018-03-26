@@ -38,11 +38,18 @@ gulp.task("browserSync", function() {
   });
 });
 
-gulp.task("imagemin", function() {
+gulp.task("imagemin", ["guetzli"], function() {
   gulp
-    .src("img/**/*.{jpg,png,gif,svg,mp4}")
+    .src("assets/img/**/*.{gif,svg,mp4}")
     .pipe(imagemin())
-    .pipe(gulp.dest("dist/img"));
+    .pipe(gulp.dest("img"));
+});
+
+gulp.task("guetzli", function() {
+  gulp
+    .src("assets/img/**/*.{jpg, png}")
+    .pipe(imagemin([imageminGuetzli()]))
+    .pipe(gulp.dest("img"));
 });
 
 gulp.task("package", ["sass", "imagemin"], function() {
