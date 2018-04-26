@@ -26,8 +26,9 @@ gulp.task("sass", function() {
 });
 
 gulp.task("babel", function() {
-  gulp
-    .src("js/src/*.js")
+  console.log("babelling");
+  return gulp
+    .src("src/js/*.js")
     .pipe(
       babel({
         presets: ["env"]
@@ -41,11 +42,11 @@ gulp.task("babel", function() {
     );
 });
 
-gulp.task("watch", ["browserSync", "sass"], function() {
+gulp.task("watch", ["browserSync", "sass", "babel"], function() {
   gulp.watch("scss/**/*.scss", ["sass"]);
+  gulp.watch("src/js/*.js", ["babel"]);
   gulp.watch("*.html", reload);
   gulp.watch("*.php", reload);
-  gulp.watch("js/*.js", ["babel"]);
 });
 
 gulp.task("browserSync", function() {
