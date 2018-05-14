@@ -13,12 +13,12 @@ gulp.task("sass", function() {
   return gulp
     .src("scss/**/*.scss")
     .pipe(sass())
-    .pipe(autoprefix())
-    .pipe(cleanCSS())
     .on("error", function(error) {
       console.log(error.toString());
       this.emit("end");
     })
+    .pipe(autoprefix())
+    .pipe(cleanCSS())
     .pipe(gulp.dest("css"))
     .pipe(
       browserSync.reload({
