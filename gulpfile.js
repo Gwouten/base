@@ -8,6 +8,7 @@ const imagemin = require("gulp-imagemin");
 const imageminGuetzli = require("imagemin-guetzli");
 const babel = require("gulp-babel");
 const uglify = require("gulp-uglify");
+const svgSprite = require("gulp-svg-sprite");
 
 gulp.task("sass", function() {
   return gulp
@@ -36,6 +37,10 @@ gulp.task("babel", function() {
         presets: ["env"]
       })
     )
+    .on("error", function(error) {
+      console.log(error.toString());
+      this.emit("end");
+    })
     .pipe(gulp.dest("js"))
     .pipe(
       browserSync.reload({
@@ -53,6 +58,7 @@ gulp.task("watch", ["browserSync", "sass", "babel"], function() {
 
 gulp.task("browserSync", function() {
   browserSync.init({
+    notify: false,
     server: {
       baseDir: "./"
     }
@@ -73,7 +79,7 @@ gulp.task("guetzli", function() {
     .pipe(gulp.dest("img"));
 });
 
-gulp.task("package", ["sass", "imagemin"], function() {
+gulp.task("package", ["sass", "babel", "imagemin"], function() {
   gulp.src("css/*.css").pipe(gulp.dest("dist/css"));
   gulp.src("js/*.js").pipe(gulp.dest("dist/js"));
   gulp.src("font").pipe(gulp.dest("dist/font"));
