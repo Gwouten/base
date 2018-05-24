@@ -8,7 +8,6 @@ const imagemin = require("gulp-imagemin");
 const imageminGuetzli = require("imagemin-guetzli");
 const babel = require("gulp-babel");
 const uglify = require("gulp-uglify");
-const svgSprite = require("gulp-svg-sprite");
 
 gulp.task("sass", function() {
   return gulp
